@@ -9,16 +9,16 @@
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	$pattern=$_POST["pattern"];
 	$text=$_POST["text"];
+	$replaceText=$_POST["replaceText"];
+
+	$replaceText = preg_replace($pattern, $replaceText, $text);
 
 	if(preg_match($pattern, $text)) {
 						$match="Match!";
 					} else {
 						$match="Does not match!";
 					}
-}
-
-?>
-
+} ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	<title>Valid Form</title>
 </head>
 <body>
-	<form action="valid_form.php" method="post">
+	<form action="regex_valid_form.php" method="post">
 		<dl>
 			<dt>Pattern</dt>
 			<dd><input type="text" name="pattern" value="<?= $pattern ?>"></dd>
